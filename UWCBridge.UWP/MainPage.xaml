@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Button x:Name="ButtonCommit" Click="ButtonCommit_Click">WPFを起動する</Button>
     </Grid>
 </Page>
