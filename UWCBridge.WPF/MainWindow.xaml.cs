@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,22 @@ namespace UWCBridge.WPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonExec_Click(object sender, RoutedEventArgs e)
+        {
+            string command = @"c:\windows\system32\ipconfig.exe";
+            ProcessStartInfo processStartInfo = new ProcessStartInfo();
+            processStartInfo.FileName = command;
+            processStartInfo.CreateNoWindow = true;
+            processStartInfo.UseShellExecute = false;
+            processStartInfo.RedirectStandardOutput = true;
+
+            var process = Process.Start(processStartInfo);
+            var output = process.StandardOutput.ReadToEnd();
+
+            output = output.Replace("\r\r\n", "\n");
+            TextBlockLog.Text = output;
         }
     }
 }

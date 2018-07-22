@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel>
+            <Button x:Name="ButtonExec" Click="ButtonExec_Click">コマンド起動</Button>
+            <TextBlock x:Name="TextBlockLog"/>
+        </StackPanel>
     </Grid>
 </Window>
