@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "UWCBridge", "UWCBridge\UWCBridge.wapproj", "{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x64.ActiveCfg = Debug|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x64.Build.0 = Debug|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x64.Deploy.0 = Debug|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x86.ActiveCfg = Debug|x86
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x86.Build.0 = Debug|x86
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Debug|x86.Deploy.0 = Debug|x86
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x64.ActiveCfg = Release|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x64.Build.0 = Release|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x64.Deploy.0 = Release|x64
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x86.ActiveCfg = Release|x86
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x86.Build.0 = Release|x86
+		{AB28FE8D-9FE3-4B74-9D2E-FC126E4FEA51}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA6F8C5A-3288-4F22-82F9-0837BB68461C}
+	EndGlobalSection
+EndGlobal
