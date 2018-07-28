@@ -49,7 +49,7 @@ namespace UWCBridge.WPF
                 };
 
                 var process = Process.Start(processStartInfo);
-                OutputLines.Add("START");
+                OutputLines.Add("-------- START --------");
 
                 process.OutputDataReceived += Process_OutputDataReceived;
                 process.BeginOutputReadLine();
@@ -58,9 +58,7 @@ namespace UWCBridge.WPF
                 process.BeginErrorReadLine();
 
                 process.Exited += Process_Exited;
-
-                process.WaitForExit();
-                OutputLines.Add("Exit");
+                process.EnableRaisingEvents = true;
             }
             catch (Exception ex)
             {
@@ -72,6 +70,10 @@ namespace UWCBridge.WPF
         private void Process_Exited(object sender, EventArgs e)
         {
             Debug.WriteLine("Process_Exited");
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                OutputLines.Add("-------- Process_Exited --------");
+            }));
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
