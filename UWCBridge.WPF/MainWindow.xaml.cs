@@ -21,25 +21,19 @@ namespace UWCBridge.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            viewModel = new MainViewModel();
+            DataContext = viewModel;
         }
 
         private void ButtonExec_Click(object sender, RoutedEventArgs e)
         {
-            string command = @"c:\windows\system32\ipconfig.exe";
-            ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.FileName = command;
-            processStartInfo.CreateNoWindow = true;
-            processStartInfo.UseShellExecute = false;
-            processStartInfo.RedirectStandardOutput = true;
-
-            var process = Process.Start(processStartInfo);
-            var output = process.StandardOutput.ReadToEnd();
-
-            output = output.Replace("\r\r\n", "\n");
-            TextBlockLog.Text = output;
+            viewModel.CommandCommit();
         }
     }
 }
