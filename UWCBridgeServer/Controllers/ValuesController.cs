@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UWCBridgeServer.Controllers
@@ -10,10 +11,12 @@ namespace UWCBridgeServer.Controllers
     public class ValuesController : Controller
     {
         // GET api/values
-        [HttpGet]
+        [HttpGet, Authorize]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var currentUser = HttpContext.User;
+
+            return new string[] { "value1", "value2", currentUser.ToString() };
         }
 
         // GET api/values/5
