@@ -29,11 +29,22 @@ namespace UWCBridge.WPF
 
             viewModel = new MainViewModel();
             DataContext = viewModel;
+            Closed += MainWindow_Closed;
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            viewModel.CommandInterrupt();
         }
 
         private void ButtonExec_Click(object sender, RoutedEventArgs e)
         {
             viewModel.CommandCommit();
+        }
+
+        private void ButtonInt_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.CommandInterrupt();
         }
     }
 }

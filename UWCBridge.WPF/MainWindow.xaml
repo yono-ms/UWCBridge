@@ -12,7 +12,14 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="{Binding Path=ButtonCommitLabel}" Click="ButtonExec_Click"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="{Binding Path=ButtonCommitLabel}" Click="ButtonExec_Click"/>
+            <Button Grid.Column="1" Content="{Binding Path=ButtonInterruptLabel}" Click="ButtonInt_Click"/>
+        </Grid>
         <ScrollViewer Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Path=OutputLines}">
                 <ItemsControl.ItemTemplate>

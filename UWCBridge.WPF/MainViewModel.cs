@@ -14,6 +14,12 @@ namespace UWCBridge.WPF
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string ButtonCommitLabel => "コマンド起動";
+        public string ButtonInterruptLabel => "Ctrl+C";
+
+        /// <summary>
+        /// コマンドプロセス
+        /// </summary>
+        Process process;
 
         /// <summary>
         /// 標準出力
@@ -38,17 +44,23 @@ namespace UWCBridge.WPF
         {
             try
             {
+                // ワーキングディレクトリを指定しないと設定ファイルを読めないので注意
+                string targetDirectory = @"D:\VSProjects\UWCBridge\UWCBridgeServer\bin\Debug\netcoreapp2.0\publish";
+                string targetFileName = targetDirectory + @"\UWCBridgeServer.exe";
+                string targetArguments = @"--urls http://localhost:5001";
+
                 var processStartInfo = new ProcessStartInfo()
                 {
-                    FileName = @"c:\windows\system32\ipconfig.exe",
-                    Arguments = @"/all",
+                    WorkingDirectory= targetDirectory,
+                    FileName = targetFileName,
+                    Arguments = targetArguments,
                     CreateNoWindow = true,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true
                 };
 
-                var process = Process.Start(processStartInfo);
+                process = Process.Start(processStartInfo);
                 OutputLines.Add("-------- START --------");
 
                 process.OutputDataReceived += Process_OutputDataReceived;
@@ -92,6 +104,22 @@ namespace UWCBridge.WPF
             {
                 OutputLines.Add(e.Data);
             }));
+        }
+        /// <summary>
+        /// 中断
+        /// </summary>
+        public void CommandInterrupt()
+        {
+            try
+            {
+                process?.Kill();
+                process?.Dispose();
+                process = null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }
