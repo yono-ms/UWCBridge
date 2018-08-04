@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using UWCBridgeServer.Models;
+using UWPBridge.Shared;
 
 namespace UWCBridgeServer.Controllers
 {
@@ -17,10 +20,16 @@ namespace UWCBridgeServer.Controllers
     public class TokenController : Controller
     {
         private IConfiguration _config;
-
-        public TokenController(IConfiguration config)
+        private readonly UserContext _context;
+        /// <summary>
+        /// コンストラクタにはサービスにAddしたインジェクション対象を引数にできる.
+        /// </summary>
+        /// <param name="config">設定</param>
+        /// <param name="context">データベースコンテキスト</param>
+        public TokenController(IConfiguration config, UserContext context)
         {
             _config = config;
+            _context = context;
         }
 
         [AllowAnonymous]
@@ -28,6 +37,14 @@ namespace UWCBridgeServer.Controllers
         public IActionResult CreateToken([FromBody]LoginModel login)
         {
             IActionResult response = Unauthorized();
+
+            // 初期起動時はユーザが無いためログインできない
+            if (_context.Users.Count() == 0)
+            {
+                // デフォルトユーザアカウントを追加する
+                _context.Users.Add(new User { Name = "admin", Password = "admin", Email="admin@admin", BirthDate=DateTime.Now });
+                _context.SaveChanges();
+            }
 
             var user = Authenticate(login);
 
@@ -39,8 +56,12 @@ namespace UWCBridgeServer.Controllers
 
             return response;
         }
-
-        private string BuildToken(UserModel user)
+        /// <summary>
+        /// トークンを作る.
+        /// </summary>
+        /// <param name="user">データベースのユーザレコード</param>
+        /// <returns>トークン</returns>
+        private string BuildToken(User user)
         {
             var claims = new[]
             {
@@ -61,30 +82,26 @@ namespace UWCBridgeServer.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-        private UserModel Authenticate(LoginModel login)
+        /// <summary>
+        /// ユーザ認証する.
+        /// </summary>
+        /// <param name="login">ログインフォームの入力値</param>
+        /// <returns>認証した場合はデータベースのユーザレコード</returns>
+        private User Authenticate(LoginModel login)
         {
-            UserModel user = null;
-
-            if(login.Username == "mario" && login.Password == "secret")
+            try
             {
-                user = new UserModel { Name = "Mario Rossi", Email = "mario@rossi.com" };
+                var user = _context.Users.First(e => e.Name.Equals(login.Username));
+                if (user.Password.Equals(login.Password))
+                {
+                    return user;
+                }
             }
-
-            return user;
-        }
-
-        public class LoginModel
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
-
-        private class UserModel
-        {
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public DateTime BirthDate { get; set; }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+            return null;
         }
     }
 }

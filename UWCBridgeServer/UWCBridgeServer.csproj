@@ -17,4 +17,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
 
+  <Import Project="..\UWPBridge.Shared\UWPBridge.Shared.projitems" Label="Shared" />
+
 </Project>

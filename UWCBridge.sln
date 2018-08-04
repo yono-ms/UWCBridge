@@ -9,9 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWCBridge.UWP", "UWCBridge.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWCBridge.WPF", "UWCBridge.WPF\UWCBridge.WPF.csproj", "{E0E351BC-9465-4749-A903-B8D89D17C9D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWCBridgeServer", "UWCBridgeServer\UWCBridgeServer.csproj", "{02CB56AE-BD97-49CF-97AE-1116FD60CF22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UWCBridgeServer", "UWCBridgeServer\UWCBridgeServer.csproj", "{02CB56AE-BD97-49CF-97AE-1116FD60CF22}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UWPBridge.Shared", "UWPBridge.Shared\UWPBridge.Shared.shproj", "{FFF37043-E228-4218-B442-21690CC8EE97}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		UWPBridge.Shared\UWPBridge.Shared.projitems*{fff37043-e228-4218-b442-21690cc8ee97}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
