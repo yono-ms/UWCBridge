@@ -15,6 +15,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UWPBridge.Shared", "UWPBrid
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		UWPBridge.Shared\UWPBridge.Shared.projitems*{4f9c1cad-3bb4-4b8c-87b6-acb295351b6c}*SharedItemsImports = 4
 		UWPBridge.Shared\UWPBridge.Shared.projitems*{fff37043-e228-4218-b442-21690cc8ee97}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

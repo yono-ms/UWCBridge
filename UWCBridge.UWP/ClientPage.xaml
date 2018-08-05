@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="UWCBridge.UWP.ClientPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWCBridge.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="LightYellow">
+            <TextBox Text="{x:Bind ViewModel.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind ViewModel.LoginLabel}"/>
+            <TextBox Text="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind ViewModel.PasswordLabel}"/>
+            <Button Content="{x:Bind ViewModel.ButtonLoginLabel}" Click="{x:Bind ViewModel.CommandLoginAsync}"/>
+            <TextBlock Text="{x:Bind ViewModel.TokenLabel}"/>
+            <TextBlock Text="{x:Bind ViewModel.Token, Mode=OneWay}"/>
+            <Button Content="{x:Bind ViewModel.ButtonUsersLabel}" Click="{x:Bind ViewModel.CommandUsersAsync}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Border Background="LightGreen">
+                <TextBlock>レスポンス情報</TextBlock>
+            </Border>
+            <ScrollViewer>
+                <StackPanel>
+                    <Border Background="LimeGreen">
+                        <TextBlock Text="{x:Bind ViewModel.ResponseHeaderLabel}"/>
+                    </Border>
+                    <TextBlock Text="{x:Bind ViewModel.ResponseHeader, Mode=OneWay}"/>
+                    <Border Background="LimeGreen">
+                        <TextBlock Text="{x:Bind ViewModel.ResponseStatusLabel}"/>
+                    </Border>
+                    <TextBlock Text="{x:Bind ViewModel.ResponseStatus, Mode=OneWay}"/>
+                    <Border Background="LimeGreen">
+                        <TextBlock Text="{x:Bind ViewModel.ResponseBodyLabel}"/>
+                    </Border>
+                    <TextBlock Text="{x:Bind ViewModel.ResponseBody, Mode=OneWay}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

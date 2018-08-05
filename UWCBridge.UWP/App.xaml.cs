@@ -30,6 +30,12 @@ namespace UWCBridge.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += App_UnhandledExceptionAsync;
+        }
+
+        private async void App_UnhandledExceptionAsync(object sender, UnhandledExceptionEventArgs e)
+        {
+            await new Windows.UI.Popups.MessageDialog(e.ToString(), "UnhandledException").ShowAsync();
         }
 
         /// <summary>

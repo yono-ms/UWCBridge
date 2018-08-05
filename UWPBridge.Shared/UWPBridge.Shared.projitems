@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)LoginModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TokenModel.cs" />
   </ItemGroup>
 </Project>
